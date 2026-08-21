@@ -167,6 +167,55 @@
             justify-content: center;
         }
 
+        /* ===== GIT BRANCH TIMELINE DESIGN ===== */
+        #experience, #projects, #education {
+            position: relative;
+            padding-left: 48px;
+        }
+
+        #experience::before, #projects::before, #education::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(157, 78, 221, 0.75) 5%,
+                rgba(157, 78, 221, 0.75) 95%,
+                transparent 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(157, 78, 221, 0.35);
+        }
+
+        #experience > .card::before, #experience > .exp-flip-container::before,
+        #projects > .card::before, #projects > .exp-flip-container::before,
+        #education > .card::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 28px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.15), 0 0 12px rgba(157, 78, 221, 0.8);
+            z-index: 2;
+        }
+
+        #experience > .card::after, #experience > .exp-flip-container::after,
+        #projects > .card::after, #projects > .exp-flip-container::after,
+        #education > .card::after {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 33px;
+            width: 28px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(157, 78, 221, 0.65), rgba(157, 78, 221, 0.05));
+        }
+
         /* Home Hero Section with Side Terminal */
         #home {
             min-height: 70vh;
@@ -176,7 +225,7 @@
             align-items: center;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
+            border-radius: 10px 28px 10px 28px;
             padding: 2.5rem;
             box-shadow: 0 0 30px rgba(157, 78, 221, 0.25);
             backdrop-filter: blur(10px);
@@ -341,14 +390,21 @@
             caret-color: #27c93f;
         }
 
-        /* About / Header Card */
-        #about {
+        /* About Card (content box only — heading sits OUTSIDE) */
+        .about-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
+            border-radius: 8px 26px 8px 26px;
             padding: 3rem 2.5rem;
             box-shadow: 0 0 25px rgba(157, 78, 221, 0.15);
             backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: var(--primary-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.25);
         }
 
         .summary {
@@ -372,7 +428,7 @@
             background: rgba(157, 78, 221, 0.1);
             border: 1px solid var(--card-border);
             padding: 0.5rem 1.1rem;
-            border-radius: 6px;
+            border-radius: 4px 16px 4px 16px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -432,11 +488,12 @@
             50% { opacity: 0; }
         }
 
-        /* Cards Layout */
+        /* Cards Layout — organic branch-leaf shape */
         .card {
+            position: relative;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 8px;
+            border-radius: 6px 22px 6px 22px;
             padding: 1.4rem;
             margin-bottom: 1.2rem;
             backdrop-filter: blur(8px);
@@ -447,6 +504,20 @@
             border-color: var(--primary-purple);
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(157, 78, 221, 0.25);
+        }
+
+        /* Glowing node dots on Skills cards */
+        #skills .card::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: -6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            box-shadow: 0 0 10px rgba(224, 170, 255, 0.9);
+            z-index: 2;
         }
 
         .card-header {
@@ -516,7 +587,7 @@
             border: 1px solid rgba(157, 78, 221, 0.3);
             color: var(--accent-glow);
             padding: 0.3rem 0.7rem;
-            border-radius: 4px;
+            border-radius: 4px 14px 4px 14px;
             font-size: 0.85rem;
             font-family: monospace;
             display: inline-flex;
@@ -554,14 +625,14 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border-radius: 8px;
             box-sizing: border-box;
         }
 
         .cert-card-front {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-left: 4px solid var(--primary-purple);
+            border-top: 4px solid var(--primary-purple);
+            border-radius: 6px 22px 6px 22px;
             padding: 1.8rem 1.4rem;
             display: flex;
             flex-direction: column;
@@ -572,6 +643,7 @@
         .cert-card-back {
             background: var(--card-bg);
             border: 1px solid var(--primary-purple);
+            border-radius: 22px 6px 22px 6px;
             transform: rotateY(180deg);
             overflow: hidden;
             display: flex;
@@ -631,7 +703,7 @@
             background: rgba(157, 78, 221, 0.15);
             border: 1px solid var(--primary-purple);
             padding: 0.6rem 1rem;
-            border-radius: 4px;
+            border-radius: 4px 14px 4px 14px;
             width: fit-content;
             transition: all 0.3s ease;
         }
@@ -648,6 +720,7 @@
             perspective: 1200px;
             cursor: pointer;
             margin-bottom: 1.2rem;
+            position: relative;
         }
 
         .exp-flip-inner {
@@ -665,7 +738,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-left: 4px solid var(--primary-purple);
-            border-radius: 8px;
+            border-radius: 6px 22px 6px 22px;
             padding: 1.4rem;
             min-height: 250px;
             display: flex;
@@ -691,7 +764,7 @@
             height: 100%;
             background: var(--card-bg);
             border: 1px solid var(--primary-purple);
-            border-radius: 8px;
+            border-radius: 22px 6px 22px 6px;
             transform: rotateY(180deg);
             overflow: hidden;
             display: flex;
@@ -757,7 +830,7 @@
         .form-group textarea {
             background: rgba(9, 5, 20, 0.8);
             border: 1px solid var(--card-border);
-            border-radius: 6px;
+            border-radius: 6px 14px 6px 14px;
             padding: 0.8rem;
             color: var(--text-main);
             font-size: 0.95rem;
@@ -776,7 +849,7 @@
             color: #ffffff;
             border: none;
             padding: 0.8rem 1.5rem;
-            border-radius: 6px;
+            border-radius: 6px 14px 6px 14px;
             font-weight: 600;
             font-size: 0.95rem;
             cursor: pointer;
@@ -808,6 +881,26 @@
             .home-left {
                 align-items: center;
                 text-align: center;
+            }
+            #experience, #projects, #education {
+                padding-left: 38px;
+            }
+            #experience::before, #projects::before, #education::before {
+                left: 8px;
+            }
+            #experience > .card::before, #experience > .exp-flip-container::before,
+            #projects > .card::before, #projects > .exp-flip-container::before,
+            #education > .card::before {
+                left: -35px;
+            }
+            #experience > .card::after, #experience > .exp-flip-container::after,
+            #projects > .card::after, #projects > .exp-flip-container::after,
+            #education > .card::after {
+                left: -23px;
+                width: 23px;
+            }
+            .about-card {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -898,50 +991,52 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section (heading OUTSIDE the box) -->
     <section id="about">
         <h2><span class="type-heading" data-text="About Me"></span></h2>
 
-        <p class="summary">
-            Cybersecurity student with practical experience in ethical hacking, CTFs, and bug bounty hunting. Skilled in Java, with a strong focus on secure development practices to design, evaluate, and build efficient, security-driven software solutions.
-        </p>
+        <div class="about-card">
+            <p class="summary">
+                Cybersecurity student with practical experience in ethical hacking, CTFs, and bug bounty hunting. Skilled in Java, with a strong focus on secure development practices to design, evaluate, and build efficient, security-driven software solutions.
+            </p>
 
-        <div class="contact-links">
-            <a href="https://drive.google.com/file/d/1zCMnmqy9GrnhSf2yowjzRidaJd5JUJkF/view" class="resume-btn" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                [ VIEW_RESUME.PDF ]
-            </a>
-            <a href="https://drive.google.com/uc?export=download&id=1zCMnmqy9GrnhSf2yowjzRidaJd5JUJkF" class="resume-btn" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                [ DOWNLOAD_RESUME.PDF ]
-            </a>
-            <a href="mailto:nagalakshmis131105@gmail.com">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                Email
-            </a>
-            <a href="tel:+918428172552">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                +91 8428172552
-            </a>
-            <a href="https://github.com/NagalakshmiSudhakar" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/nagalakshmi-sudhakar-99b606293/" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                LinkedIn
-            </a>
-            <a href="https://tryhackme.com/p/Nagalakshmis13" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                TryHackMe
-            </a>
+            <div class="contact-links">
+                <a href="https://drive.google.com/file/d/1zCMnmqy9GrnhSf2yowjzRidaJd5JUJkF/view" class="resume-btn" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    [ VIEW_RESUME.PDF ]
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1zCMnmqy9GrnhSf2yowjzRidaJd5JUJkF" class="resume-btn" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    [ DOWNLOAD_RESUME.PDF ]
+                </a>
+                <a href="mailto:nagalakshmis131105@gmail.com">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Email
+                </a>
+                <a href="tel:+918428172552">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    +91 8428172552
+                </a>
+                <a href="https://github.com/NagalakshmiSudhakar" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/nagalakshmi-sudhakar/" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                <a href="https://tryhackme.com/p/Nagalakshmis13" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    TryHackMe
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1562,7 +1657,7 @@
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             GitHub
                         </a>
-                        <a href="https://www.linkedin.com/in/nagalakshmi-sudhakar-99b606293/" target="_blank" class="tag" style="text-decoration: none;">
+                        <a href="https://linkedin.com/in/nagalakshmi-sudhakar/" target="_blank" class="tag" style="text-decoration: none;">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                             LinkedIn
                         </a>
@@ -1611,27 +1706,18 @@
             const lockScreen = document.getElementById('lock-screen');
             const promptText = document.getElementById('prompt-text');
 
-            // 1. Open the lock shackle after 800ms
             setTimeout(() => {
                 lockScreen.classList.add('open-shackle');
                 promptText.textContent = "[ ACCESS GRANTED ]";
             }, 800);
 
-            // 2. Fade out lock screen after 1.5s
             setTimeout(() => {
                 lockScreen.classList.add('unlocked');
             }, 1500);
 
-            // Start subtitle typing loop
             typeSubtitle();
-
-            // Set up Intersection Observer for Section Headings
             setupHeadingObserver();
-
-            // Set up interactive terminal
             setupTerminal();
-
-            // Set up graceful image fallback
             setupImageFallback();
         });
 
@@ -1714,7 +1800,7 @@
                     const dy = particles[i].y - particles[j].y;
                     const distSq = dx * dx + dy * dy;
 
-                    if (distSq < 15625) { // 125^2 threshold
+                    if (distSq < 15625) {
                         const dist = Math.sqrt(distSq);
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
@@ -1788,7 +1874,7 @@
             tick();
         }
 
-        // 3. Section Heading Typing on Scroll
+        // 3. Section Heading Typing on Scroll (works for ALL headings incl. About Me)
         function setupHeadingObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1856,7 +1942,7 @@ Type 'open <number>' to view on GitHub.`,
                 contact: () => `Email: nagalakshmis131105@gmail.com
 Phone: +91 8428172552`,
                 social: () => `GitHub:  https://github.com/NagalakshmiSudhakar
-LinkedIn: https://www.linkedin.com/in/nagalakshmi-sudhakar-99b606293/
+LinkedIn: https://linkedin.com/in/nagalakshmi-sudhakar/
 TryHackMe: https://tryhackme.com/p/Nagalakshmis13`,
                 open: (args) => {
                     const urls = {
